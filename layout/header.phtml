@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="public/css/bootstrap.css"  type="text/css"/>
+    <link rel="stylesheet" href="public/css/scheduler.css"  type="text/css"/>
+<!--    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>-->
+    <!-- <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
+    <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/bootstrap.js"></script> 
+    <script src="public/js/scheduler.js"></script>    
+       
+    <script type="text/javascript">
+    	setInterval(function() {
+        	process_email();
+        	// every 5 seconds
+  		}, 5000);
+  		function process_email(){
+  			$.ajax({
+				url: "process_email.php",				
+				}).done(function() {
+				});
+  		}
+
+  		
+    </script>
+    <title>Email Scheduler</title>
+</head>
+
+<body>
+<?php 
+//ini_set('display_errors', 1);
+session_start();
+?>
+<div class="container">
+<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+    <ul class="nav navbar-nav">
+        <li>
+            <a href="schedulelisting.php" class="text-success"><h5>Schedule List</h5></a>
+        </li>
+        <li class="active">
+            <a href="scheduleemail.php" class="text-success"><h5>Schedule Email</h5></a>
+        </li>
+    </ul>
+    <?php if(isset($_SESSION['id']) && $_SESSION['id']!='')
+            {  ?>
+    <div class="container">
+        <div class="row">
+            <button type="button" class="btn btn-success btn-default pull-right text-info" onclick="window.location.href='logout.php'">Logout</button>
+        </div>
+    </div>
+   <?php }
+   ?>
+</nav>
+</div>
